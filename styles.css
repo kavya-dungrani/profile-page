@@ -138,10 +138,10 @@ p {
 @keyframes pulse-glow {
   0%,
   100% {
-    box-shadow: 0 0 20px var(--color-red-glow);
+    opacity: 0.3;
   }
   50% {
-    box-shadow: var(--shadow-red-intense);
+    opacity: 0.6;
   }
 }
 
@@ -513,6 +513,160 @@ section {
 }
 
 /* ===================================
+   CONNECT SECTION
+   =================================== */
+
+#connect {
+  background: var(--color-black-pure);
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-md);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.social-card {
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: var(--spacing-lg);
+  text-align: center;
+  text-decoration: none;
+  transition: all var(--transition-medium);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.social-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 0, 0, 0.1),
+    transparent
+  );
+  transition: left var(--transition-slow);
+}
+
+.social-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  border-color: var(--color-red-vibrant);
+  box-shadow: var(--shadow-red-intense);
+  background: rgba(26, 26, 26, 0.9);
+}
+
+.social-card:hover::before {
+  left: 100%;
+}
+
+.social-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    var(--color-black-soft),
+    var(--color-red-dark)
+  );
+  border-radius: 50%;
+  border: 2px solid var(--color-red-vibrant);
+  transition: all var(--transition-medium);
+  position: relative;
+}
+
+.social-icon svg {
+  width: 40px;
+  height: 40px;
+  color: var(--color-white);
+  transition: all var(--transition-medium);
+}
+
+.social-card:hover .social-icon {
+  transform: rotate(10deg) scale(1.1);
+  box-shadow: var(--shadow-red-intense);
+  background: linear-gradient(
+    135deg,
+    var(--color-red-dark),
+    var(--color-red-vibrant)
+  );
+}
+
+.social-card:hover .social-icon svg {
+  color: var(--color-white);
+  transform: scale(1.1);
+}
+
+.social-name {
+  font-size: 1.5rem;
+  color: var(--color-white);
+  font-weight: 600;
+  margin: 0;
+  font-family: var(--font-heading);
+  transition: color var(--transition-fast);
+}
+
+.social-card:hover .social-name {
+  color: var(--color-red-vibrant);
+}
+
+.social-handle {
+  font-size: 1rem;
+  color: var(--color-gray);
+  margin: 0;
+  transition: color var(--transition-fast);
+}
+
+.social-card:hover .social-handle {
+  color: var(--color-gray-light);
+}
+
+/* Platform-specific accent colors on hover (optional) */
+.social-card[data-platform="instagram"]:hover {
+  border-color: #e1306c;
+}
+
+.social-card[data-platform="linkedin"]:hover {
+  border-color: #0077b5;
+}
+
+.social-card[data-platform="github"]:hover {
+  border-color: #ffffff;
+}
+
+.social-card[data-platform="pinterest"]:hover {
+  border-color: #e60023;
+}
+
+.social-card[data-platform="codepen"]:hover {
+  border-color: #47cf73;
+}
+
+.social-card[data-platform="twitter"]:hover {
+  border-color: #1da1f2;
+}
+
+.social-card[data-platform="email"]:hover {
+  border-color: var(--color-red-vibrant);
+}
+
+
+/* ===================================
    GITHUB REPOS SECTION
    =================================== */
 
@@ -715,6 +869,10 @@ footer {
   }
 
   .repos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .social-grid {
     grid-template-columns: 1fr;
   }
 
