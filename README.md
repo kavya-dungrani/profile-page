@@ -30,7 +30,7 @@ A minimalistic portfolio website with a black and red theme, featuring smooth an
 1. Clone the repository
 
 ```bash
-git clone https://github.com/xnox-fox/profile-page.git
+git clone https://github.com/kavya-dungrani/profile-page.git
 ```
 
 2. Open `index.html` in your browser
@@ -59,7 +59,7 @@ MIT License - See [LICENSE](LICENSE) file for details
 
 **Kavya Dungrani**
 
-- GitHub: [@xnox-fox](https://github.com/xnox-fox)
+- GitHub: [@kavya-dungrani](https://github.com/kavya-dungrani)
 - LinkedIn: [Kavya Dungrani](https://www.linkedin.com/in/kavya-dungrani-9230233aa/)
 - Instagram: [@xnox.walker](https://instagram.com/xnox.walker)
 
