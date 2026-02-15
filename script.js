@@ -3,6 +3,63 @@
 // ===================================
 
 const typingText = document.getElementById("typing-text");
+
+// ===================================
+// SIDEBAR NAVIGATION TOGGLE
+// ===================================
+
+const menuToggle = document.getElementById("menuToggle");
+const sidebarNav = document.getElementById("sidebarNav");
+const navLinks = document.querySelectorAll(".nav-links a");
+const body = document.body;
+
+// Toggle sidebar collapse/expand (desktop) or show/hide (mobile)
+menuToggle.addEventListener("click", () => {
+  if (window.innerWidth > 768) {
+    // Desktop: Toggle collapse state
+    sidebarNav.classList.toggle("collapsed");
+    body.classList.toggle("sidebar-collapsed");
+  } else {
+    // Mobile: Toggle visibility
+    sidebarNav.classList.toggle("active");
+    menuToggle.classList.toggle("active");
+  }
+});
+
+// Close menu when clicking a link (mobile)
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    if (window.innerWidth <= 768) {
+      sidebarNav.classList.remove("active");
+      menuToggle.classList.remove("active");
+    }
+  });
+});
+
+// Highlight active link based on scroll position
+function highlightActiveLink() {
+  const sections = document.querySelectorAll("section");
+  const scrollPos = window.scrollY + 200;
+
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    const sectionId = section.getAttribute("id");
+
+    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${sectionId}`) {
+          link.classList.add("active");
+        }
+      });
+    }
+  });
+}
+
+window.addEventListener("scroll", highlightActiveLink);
+highlightActiveLink(); // Call on load
+
 const phrases = [
   "Full Stack Developer",
   "UI/UX Enthusiast",
@@ -298,34 +355,7 @@ function createFloatingParticles() {
 // Uncomment to enable floating particles
 // createFloatingParticles();
 
-// ===================================
-// ACTIVE NAV LINK HIGHLIGHTING
-// ===================================
-
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll(".nav-links a");
-
-function highlightNavLink() {
-  let currentSection = "";
-
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.clientHeight;
-
-    if (window.pageYOffset >= sectionTop - 100) {
-      currentSection = section.getAttribute("id");
-    }
-  });
-
-  navLinks.forEach((link) => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === `#${currentSection}`) {
-      link.classList.add("active");
-    }
-  });
-}
-
-window.addEventListener("scroll", debounce(highlightNavLink, 50));
+// Navbar scroll effect removed - using sidebar navigation now
 
 // ===================================
 // CONSOLE MESSAGE
@@ -333,9 +363,9 @@ window.addEventListener("scroll", debounce(highlightNavLink, 50));
 
 console.log(
   "%c Welcome to my Portfolio! ",
-  "background: #ff0000; color: #fff; font-size: 20px; font-weight: bold; padding: 10px;",
+  "background: #ffffff; color: #000; font-size: 20px; font-weight: bold; padding: 10px;",
 );
 console.log(
   "%c Built with ❤️ and modern web technologies ",
-  "background: #000; color: #ff0000; font-size: 14px; padding: 5px;",
+  "background: #000; color: #ffffff; font-size: 14px; padding: 5px;",
 );
